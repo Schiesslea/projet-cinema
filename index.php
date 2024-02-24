@@ -44,7 +44,7 @@ $films = $requete->fetchAll(PDO::FETCH_ASSOC);
                 <td><img src="<?= $film["image"] ?>" alt=""></td>
                 <td><?= $film["titre"] ?></td>
                 <td><?= $film["duree"] ?></td>
-                <td class=""><a href="recup-param.php?resume=$film[""]?>Détails du film</a>></td>
+                <td><a href="recup-param.php?id_film=<?= $film['id_film'] ?>">Détails du film</a></td>
             </tr>
         <?php endforeach; ?>
         </tbody>
