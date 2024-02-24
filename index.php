@@ -29,25 +29,27 @@ $films = $requete->fetchAll(PDO::FETCH_ASSOC);
     <title>Document</title>
 </head>
 <body>
-    <table class="table table-primary">
-        <thead>
-        <tr>
-            <th class="text-warning" scope="col">Affiche</th>
-            <th class="text-warning" scope="col">Titre</th>
-            <th class="text-warning" scope="col">Durée du film</th>
-            <th class="text-warning" scope="col">Détail du film</th>
-        </tr>
-        </thead>
-        <tbody>
-        <?php foreach ($films as $film) : ?>
-            <tr>
-                <td><img src="<?= $film["image"] ?>" alt=""></td>
-                <td><?= $film["titre"] ?></td>
-                <td><?= $film["duree"] ?></td>
-                <td><a href="recup-param.php?id_film=<?= $film['id_film'] ?>">Détails du film</a></td>
-            </tr>
-        <?php endforeach; ?>
-        </tbody>
-        </table>
+<div class="d-flex mt-2 bg-secondary">
+    <div class=" rounded-4 p-3 flex-fill">
+        <div class="container ">
+            <!-- Votre code -->
+            <div class="row text-center  ">
+                <?php foreach ($films as $film) : ?>
+                    <div class="card border-dark  mb-3 me-2" style="max-width: 20rem;">
+                        <div class="card-body">
+                            <h4 class="card-title"><img src="<?= $film["image"] ?>" alt=""</h4>
+                            <p class="card-text"><?= $film["titre"] ?></p>
+                            <p> <?= $film["duree"] . " minutes" ?></p>
+                            <p class="card-text">
+                                <a class="btn btn-primary" role="button"
+                                   href="recup-param.php?id_film=<?= $film['id_film'] ?>
+                        ">Détails du film</a></p>
+
+                        </div>
+                    </div>
+                <?php endforeach; ?>
+            </div>
+
+
 </body>
 </html>
