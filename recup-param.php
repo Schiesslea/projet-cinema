@@ -31,15 +31,15 @@ $requete->execute();
     <link href="../assets/css/bootstrap.min.css" rel="stylesheet">
     <title>Document</title>
 </head>
-<body>
-<div class="container">
-    <div class="row text-center">
-        <div class="col-md-6 col-xl-6 float-start ">
+<body class="bg-secondary">
+<div class="container text-center">
+    <div class="row p-5 d-md-block">
+        <div class=" ">
             <?php
             if ($film = $requete->fetch(PDO::FETCH_ASSOC)) { ?>
             <?php echo "<img src='{$film['image']}' alt='' </img>"; ?>
         </div>
-        <div class="col-md-6 col-xl-6 text-md-end ">
+        <div class="text-md-center form-control ">
             <?php
             echo "<p>{$film['resume']}</p>"; // Assuming you have a "resume" attribute in your table
             } else {
@@ -51,5 +51,6 @@ $requete->execute();
             ?>
         </div>
     </div>
+
 </body>
 </html>

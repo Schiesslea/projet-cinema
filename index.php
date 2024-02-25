@@ -28,8 +28,8 @@ $films = $requete->fetchAll(PDO::FETCH_ASSOC);
     <link href="../assets/css/bootstrap.min.css" rel="stylesheet">
     <title>Document</title>
 </head>
-<body>
-<div class="d-flex mt-2 bg-secondary">
+<body class=" bg-secondary">
+<div class="d-flex mt-2">
     <div class=" rounded-4 p-3 flex-fill">
         <div class="container ">
             <!-- Votre code -->
