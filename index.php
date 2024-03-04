@@ -16,6 +16,9 @@ $requete->execute();
 // 4. Récupération des enregistrements
 // Un enregistrement = un tableau associatif
 $films = $requete->fetchAll(PDO::FETCH_ASSOC);
+
+
+require 'fonction.php'
 ?>
 
 <!doctype html>
@@ -28,18 +31,19 @@ $films = $requete->fetchAll(PDO::FETCH_ASSOC);
     <link href="../assets/css/bootstrap.min.css" rel="stylesheet">
     <title>Document</title>
 </head>
-<body class=" bg-secondary">
+<?php include_once "./_partials/menu.php" ?>
+<body class=" bg-dark   ">
 <div class="d-flex mt-2">
     <div class=" rounded-4 p-3 flex-fill">
         <div class="container ">
             <!-- Votre code -->
-            <div class="row text-center  ">
+            <div class="row text-center " href="#home">
                 <?php foreach ($films as $film) : ?>
                     <div class="card border-dark  mb-3 me-2" style="max-width: 20rem;">
                         <div class="card-body">
                             <h4 class="card-title"><img src="<?= $film["image"] ?>" alt=""</h4>
                             <p class="card-text"><?= $film["titre"] ?></p>
-                            <p> <?= $film["duree"] . " minutes" ?></p>
+                            <p> <?= convertirEnHeuresMinutes($film["duree"])  ?></p>
                             <p class="card-text">
                                 <a class="btn btn-primary" role="button"
                                    href="recup-param.php?id_film=<?= $film['id_film'] ?>

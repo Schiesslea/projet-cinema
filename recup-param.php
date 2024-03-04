@@ -1,8 +1,4 @@
 <?php
-// Récupère le paramètre d'URL 'prenom'
-// Tester la présence du paramètre
-// Récupère le paramètre d'URL 'prenom'
-// Tester la présence du paramètre
 if (isset($_GET['id_film'])) {
 $id_film = $_GET['id_film'];
 
@@ -18,7 +14,7 @@ $requete->bindParam(':id', $id_film);
 // 4. Exécution de la requête
 $requete->execute();
 
-// 5. Récupération du film (vérifier si trouvé)
+require 'fonction.php'
 ?>
 
 <!doctype html>
@@ -31,17 +27,22 @@ $requete->execute();
     <link href="../assets/css/bootstrap.min.css" rel="stylesheet">
     <title>Document</title>
 </head>
-<body class="bg-secondary">
-<div class="container text-center">
-    <div class="row p-5 d-md-block">
-        <div class=" ">
+<body class="bg-dark">
+<?php include_once "./_partials/menu.php" ?>
+<div class="container" >
+<div class="table d-flex text-center">
+    <div class="mt-5 ">
             <?php
             if ($film = $requete->fetch(PDO::FETCH_ASSOC)) { ?>
-            <?php echo "<img src='{$film['image']}' alt='' </img>"; ?>
+            <?php echo "<img src='{$film['image']}' alt='' height='400' </img>"; ?>
         </div>
-        <div class="text-md-center form-control ">
+        <div class="mt-5 text-white  p-4 text-start">
             <?php
-            echo "<p>{$film['resume']}</p>"; // Assuming you have a "resume" attribute in your table
+            echo "<p>{$film['titre']}</p>";
+            echo "<p>{$film['duree']} minutes</p>";
+            echo "<p>{$film['date_sortie']}</p>";
+            echo "<p>{$film['pays']}</p>";
+            echo "<p>{$film['resume']}</p>";
             } else {
                 echo "Film introuvable";
             }
@@ -51,6 +52,7 @@ $requete->execute();
             ?>
         </div>
     </div>
+</div>
 
 </body>
 </html>
