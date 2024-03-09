@@ -89,7 +89,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
 <body class="bg-dark">
 <!--Insertion d'un menu-->
 <?php include_once './_partials/menu.php' ?>
-<h1 class="text-center text-light">Formulaire</h1>
+<h1 class="text-center text-light">Création d'un film</h1>
 <div class="container d-flex">
     <img src="./assets/images/undraw_home_cinema_l7yl.svg" class="w-25" alt="">
 
@@ -157,7 +157,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
                     <p class="form-text text-danger"><?= $erreurs['image'] ?></p>
                 <?php endif; ?>
             </div>
-            <button type="submit" class="btn btn-dark">Valider</button>
+            <button type="submit" class="btn btn-light">Valider</button>
         </form>
     </div>
 </div>
