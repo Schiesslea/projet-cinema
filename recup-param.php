@@ -29,9 +29,9 @@ require 'fonction.php'
 </head>
 <body class="bg-dark">
 <?php include_once "./_partials/menu.php" ?>
-<div class="container" >
-<div class="table d-flex text-center">
-    <div class="mt-5 ">
+<div class="container">
+    <div class="table d-flex text-center">
+        <div class="mt-5 ">
             <?php
             if ($film = $requete->fetch(PDO::FETCH_ASSOC)) { ?>
             <?php echo "<img src='{$film['image']}' alt='' height='400' </img>"; ?>
@@ -39,8 +39,8 @@ require 'fonction.php'
         <div class="mt-5 text-white  p-4 text-start">
             <?php
             echo "<p>{$film['titre']}</p>";
-            echo "<p>{$film['duree']} minutes</p>";
-            echo "<p>{$film['date_sortie']}</p>";
+            echo "<p>" . convertirEnHeuresMinutes($film['duree']) . "</p>";
+            echo "<p>" . date("d/m/y", strtotime($film['date_sortie'])) . "</p>";
             echo "<p>{$film['pays']}</p>";
             echo "<p>{$film['resume']}</p>";
             } else {
