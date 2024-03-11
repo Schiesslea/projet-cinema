@@ -40,7 +40,7 @@ require 'fonction.php'
             <?php
             echo "<p>{$film['titre']}</p>";
             echo "<p>" . convertirEnHeuresMinutes($film['duree']) . "</p>";
-            echo "<p>" . date("d/m/y", strtotime($film['date_sortie'])) . "</p>";
+            echo "<p>" . date("d/m/Y", strtotime($film['date_sortie'])) . "</p>";
             echo "<p>{$film['pays']}</p>";
             echo "<p>{$film['resume']}</p>";
             } else {

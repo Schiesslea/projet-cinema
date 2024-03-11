@@ -34,7 +34,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
         $erreurs['duree'] = "La durée est obligatoire";
     }
     if (empty($resume)) {
-        $erreurs['resume'] = "Le resumé est obligatoire";
+        $erreurs['resume'] = "Le résumé est obligatoire";
     }
     if (empty($date_sortie)) {
         $erreurs['date_sortie'] = "La date de sortie est obligatoire";
