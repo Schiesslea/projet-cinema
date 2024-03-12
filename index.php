@@ -36,10 +36,11 @@ require 'fonction.php'
 <div class="d-flex mt-2">
     <div class=" rounded-4 p-3 flex-fill">
         <div class="container ">
+            <h1 class="text-white border-bottom border-primary border-3 mb-5 mt-3">Liste des films</h1>
             <!-- Votre code -->
             <div class="row text-center " href="#home">
                 <?php foreach ($films as $film) : ?>
-                    <div class="card border-dark  mb-3 me-2" style="max-width: 20rem;">
+                    <div class="card border-dark mb-4 me-2" style="max-width: 20rem;">
                         <div class="card-body">
                             <h4 class="card-title"><img src="<?= $film["image"] ?>" alt=""</h4>
                             <p class="card-text"><?= $film["titre"] ?></p>

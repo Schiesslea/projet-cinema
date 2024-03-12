@@ -36,6 +36,9 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
     if (empty($resume)) {
         $erreurs['resume'] = "Le résumé est obligatoire";
     }
+    if ($duree < 0) {
+        $erreurs['duree'] = "La durée n'est pas valide";
+    }
     if (empty($date_sortie)) {
         $erreurs['date_sortie'] = "La date de sortie est obligatoire";
     }
