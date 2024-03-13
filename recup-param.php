@@ -28,7 +28,7 @@ require 'fonction.php'
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
     <title>Document</title>
 </head>
-<body class="bg-dark">
+<body class="" style="background-color: #FFCE32">
 <?php include_once "./_partials/menu.php" ?>
 <div class="container ">
     <h1 class="text-white border-bottom border-primary border-3  mt-4">Détail du film</h1>
@@ -38,15 +38,17 @@ require 'fonction.php'
             if ($film = $requete->fetch(PDO::FETCH_ASSOC)) { ?>
             <?php echo "<img src='{$film['image']}' alt='' height='400' </img>"; ?>
         </div>
-        <div class="mt-3 text-black bg-white  p-4 text-start">
+        <div class="mt-3 text-black p-4 text-start" style="background-color: #1D1D1D">
+
             <?php
-            echo "<p>{$film['titre']}</p>"; ?>
+            echo "<p class='fs-4'> {$film['titre']}</p>"; ?>
         <div class="row">
             <?php
-            echo "<p class='col-4'><i class='bi bi-hourglass-split'></i>".convertirEnHeuresMinutes($film['duree'])."</p>";
-            echo "<p class='col-4'><i class='bi bi-calendar me-1'></i>".date("d/m/Y", strtotime($film['date_sortie']))."</p>";
-            echo "<p class='col-4'><i class='bi bi-geo-alt-fill'></i> {$film['pays']}</p>"; ?>
+            echo "<p class='col-4' style='background-color: #1D1D1D'><i class='bi bi-hourglass-split'></i>".convertirEnHeuresMinutes($film['duree'])."</p>";
+            echo "<p class='col-4' style='background-color: #1D1D1D'><i class='bi bi-calendar me-1'></i>".date("d/m/Y", strtotime($film['date_sortie']))."</p>";
+            echo "<p class='col-4' style='background-color: #1D1D1D'><i class='bi bi-geo-alt-fill'></i> {$film['pays']}</p>"; ?>
             </div>
+            <h3>Synopsis du film :</h3>
             <?php
             echo "<p>{$film['resume']}</p>";
             } else {

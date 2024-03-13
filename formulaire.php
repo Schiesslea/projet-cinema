@@ -89,15 +89,15 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
     </style>
     <title>Formulaire</title>
 </head>
-<body class="bg-dark">
+<body >
 <!--Insertion d'un menu-->
 <?php include_once './_partials/menu.php' ?>
-<h1 class="text-center text-light">Création d'un film</h1>
+<h1 class="text-center text-black">Ajouter un film</h1>
 <div class="container d-flex">
     <img src="./assets/images/undraw_home_cinema_l7yl.svg" class="w-25" alt="">
 
-    <div class="w-50 mx-auto shadow my-5 p-4 bg-primary ">
-        <form action="" method="post" novalidate>
+    <div class="w-50 mx-auto shadow my-5 p-4" style="background-color: #00ABE4" ">
+        <form action="" method="post" novalidate >
             <div class="mb-3">
                 <label for="titre" class="form-label">Titre*</label>
                 <input type="text"
@@ -121,10 +121,10 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
             </div>
             <div class="mb-3">
                 <label for="resume" class="form-label">Resumé*</label>
-                <input type="text"
-                       class="form-control <?= (isset($erreurs['resume'])) ? "border border-2 border-danger" : "" ?>"
-                       id="resume" name="resume" value="<?= $resume ?>" placeholder="Saisir le résumé du film"
-                       aria-describedby="emailHelp">
+                <textarea name="resume" id="resume"  rows="3"
+                          placeholder="Écrire le résumé du film"
+                          class="form-control <?= (isset($erreurs['resume'])) ? "border border-2 border-danger" : "" ?>">
+                </textarea>
                 <?php if (isset($erreurs['resume'])) : ?>
                     <p class="form-text text-danger"><?= $erreurs['resume'] ?></p>
                 <?php endif; ?>
@@ -160,6 +160,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
                     <p class="form-text text-danger"><?= $erreurs['image'] ?></p>
                 <?php endif; ?>
             </div>
+            <p>* Champs obligatoires</p>
             <button type="submit" class="btn btn-light">Valider</button>
         </form>
     </div>
