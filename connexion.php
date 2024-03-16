@@ -62,21 +62,18 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
           content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <link href="../assets/css/bootstrap.min.css" rel="stylesheet">
-    <style>
-        body {
-            font-family: 'Gluten', cursive;
-        }
-    </style>
+
     <title>Création d'un compte</title>
 </head>
-<body class="">
+<body class="bg-dark">
 <!--Insertion d'un menu-->
 <?php include_once './_partials/menu.php' ?>
-<h1 class="text-center text-black">Création d'un compte</h1>
-
+<div class="container">
+<h1 class="mt-4" style="border-bottom: solid; border-bottom-color: #86C232; color: #86C232">Connexion</h1>
+</div>
 <!-- Création d'un compte -->
 <div class="container d-flex">
-    <div class="w-50 mx-auto shadow my-5 p-4 rounded" style="background-color: #00ABE4">
+    <div class="w-50 mx-auto shadow my-5 p-4 rounded" style="background-color: #86C232">
         <form action="" method="post" novalidate>
             <div class="mb-3">
                 <label for="email_utilisateur" class="form-label">Email*</label>

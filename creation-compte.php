@@ -92,21 +92,17 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
     <link href="../assets/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
 
-    <style>
-        body {
-            font-family: 'Gluten', cursive;
-        }
-    </style>
     <title>Création d'un compte</title>
 </head>
-<body class="">
+<body class="bg-dark">
 <!--Insertion d'un menu-->
 <?php include_once './_partials/menu.php' ?>
-<h1 class="text-center text-black">Création d'un compte</h1>
-
+<div class="container">
+<h1 class="mt-4 " style="color: #86C232; border-bottom: solid; border-bottom-color: #86C232">Création d'un compte</h1>
+</div>
 <!-- Création d'un compte -->
 <div class="container d-flex">
-    <div class="w-50 mx-auto shadow my-5 p-4 rounded" style="background-color: #00ABE4">
+    <div class="w-50 mx-auto shadow  my-5 p-4 rounded" style="background-color: #86C232" >
         <form action="" method="post" novalidate>
             <div class="mb-3">
                 <label for="pseudo_utilisateur" class="form-label">Pseudo*</label>
@@ -130,7 +126,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
                 <?php endif; ?>
             </div>
             <div class="mb-3">
-                <label for="mdp_utilisateur" class="form-label">Mot de passe* <button type="button" class="btn mb-1 border border-1 border-black rounded-5 float-end" data-bs-toggle="modal"
+                <label for="mdp_utilisateur" class="form-label">Mot de passe* <button type="button" class="btn   " data-bs-toggle="modal"
                                                                                       data-bs-target="#exampleModal">
                         <i class="bi bi-info-circle" ></i>
                     </button>
@@ -143,7 +139,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
                             <div class="modal-content">
                                 <div class="modal-header">
                                     <h1 class="modal-title fs-5" id="exampleModalLabel">Les caractéristiques de votre mot de passe </h1>
-                                    <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                    <button type="button" class="btn-close " data-bs-dismiss="modal"
                                             aria-label="Close"></button>
                                 </div>
                                 <div class="modal-body">

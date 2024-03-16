@@ -11,7 +11,7 @@
 </head>
 <body>
 <header>
-    <nav class="navbar navbar-expand-lg  navbar-expand-md" style="background-color: #1D1D1D" >
+    <nav class="navbar navbar-expand-lg bg-dark shadow  navbar-expand-md"  >
         <div class="container-fluid  ">
             <a class="navbar-brand text-white "  href="../index.php">
                 <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" fill="currentColor" class="bi bi-film"

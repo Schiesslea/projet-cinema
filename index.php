@@ -30,25 +30,26 @@ require 'fonction.php'
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <link href="../assets/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+    <link rel="stylesheet" href="/assets/css/style.css">
 
     <title>Document</title>
 </head>
 <?php include_once "./_partials/menu.php" ?>
-<body class="" style="background-color: #FFCE32">
+<body class=" bg-dark" >
 <div class="d-flex mt-2">
     <div class=" rounded-4 p-3 flex-fill">
         <div class="container ">
-            <h1 class=" border-bottom border-secondary border-3 mb-5 mt-3" style="color: #323232">Liste des films</h1>
+            <h1 class="   border-3 mb-5 mt-4" style="color: #86C232; border-bottom: solid ;border-bottom-color: #86C232">Liste des films</h1>
             <!-- Votre code -->
             <div class="row text-center " href="#home">
                 <?php foreach ($films as $film) : ?>
-                    <div class="card border-dark  mb-4 me-2" style="max-width: 20rem; background-color: #1D1D1D">
-                        <div class="card-body">
+                    <div class="card border-dark rounded-4  mb-4 me-2" style="max-width: 20rem; background-color: ">
+                        <div class="card-body ">
                             <h4 class="card-title"><img src="<?= $film["image"] ?>" alt=""</h4>
-                            <p class="card-text fs-3 text-white" ><?= $film["titre"] ?></p>
-                            <p class="fs-5 text-white"> <?= "<i class='bi bi-hourglass-split '></i>".convertirEnHeuresMinutes($film["duree"])  ?></p>
+                            <p class="card-text fs-3 text-dark" ><?= $film["titre"] ?></p>
+                            <p class="fs-5 text-dark"> <?= "<i class='bi bi-hourglass-split '></i>".convertirEnHeuresMinutes($film["duree"])  ?></p>
                             <p class="card-text">
-                                <a class="btn btn-light" role="button"
+                                <a class="btn " style="background-color: #86C232 " role="button"
                                    href="recup-param.php?id_film=<?= $film['id_film'] ?>
                         ">Détails du film</a></p>
 
