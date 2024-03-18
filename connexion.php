@@ -63,7 +63,9 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <link href="../assets/css/bootstrap.min.css" rel="stylesheet">
 
-    <title>Création d'un compte</title>
+    <title>Connexion à un compte</title>
+    <link rel="shortcut icon" href="/assets/images/film.svg">
+
 </head>
 <body class="bg-dark">
 <!--Insertion d'un menu-->

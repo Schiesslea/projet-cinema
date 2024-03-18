@@ -32,7 +32,8 @@ require 'fonction.php'
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
     <link rel="stylesheet" href="/assets/css/style.css">
 
-    <title>Document</title>
+    <title>BestMovie</title>
+    <link rel="shortcut icon" href="/assets/images/film.svg">
 </head>
 <?php include_once "./_partials/menu.php" ?>
 <body class=" bg-dark" >
@@ -41,12 +42,12 @@ require 'fonction.php'
         <div class="container ">
             <h1 class="   border-3 mb-5 mt-4" style="color: #86C232; border-bottom: solid ;border-bottom-color: #86C232">Liste des films</h1>
             <!-- Votre code -->
-            <div class="row text-center " href="#home">
+            <div class="row text-center  " href="#home">
                 <?php foreach ($films as $film) : ?>
-                    <div class="card border-dark rounded-4  mb-4 me-2" style="max-width: 20rem; background-color: ">
+                    <div class="card  rounded-4  mb-4 me-2" style="max-width: 20rem ">
                         <div class="card-body ">
                             <h4 class="card-title"><img src="<?= $film["image"] ?>" alt=""</h4>
-                            <p class="card-text fs-3 text-dark" ><?= $film["titre"] ?></p>
+                            <p class="card-text fs-4 text-dark" ><?= $film["titre"] ?></p>
                             <p class="fs-5 text-dark"> <?= "<i class='bi bi-hourglass-split '></i>".convertirEnHeuresMinutes($film["duree"])  ?></p>
                             <p class="card-text">
                                 <a class="btn " style="background-color: #86C232 " role="button"
@@ -58,6 +59,7 @@ require 'fonction.php'
                 <?php endforeach; ?>
             </div>
 
+            <script src="./assets/js/bootstrap.bundle.min.js"></script>
 
 </body>
 </html>

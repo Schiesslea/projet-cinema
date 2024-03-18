@@ -20,7 +20,7 @@
                 </svg>
                 BestMovie</a>
 
-            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarText"
+            <button class="navbar-toggler bg-white" type="button" data-bs-toggle="collapse" data-bs-target="#navbarText"
                     aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
             </button>
@@ -55,5 +55,7 @@
     </nav>
 </header>
 <main>
+    <script src="./assets/js/bootstrap.bundle.min.js"></script>
+
 </body>
 </html>

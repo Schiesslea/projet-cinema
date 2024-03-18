@@ -93,6 +93,8 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
 
     <title>Création d'un compte</title>
+    <link rel="shortcut icon" href="/assets/images/film.svg">
+
 </head>
 <body class="bg-dark">
 <!--Insertion d'un menu-->

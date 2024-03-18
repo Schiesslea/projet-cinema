@@ -84,7 +84,9 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
     <link href="../assets/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="/assets/css/style.css">
 
-    <title>Formulaire</title>
+    <title>Ajouter un film</title>
+    <link rel="shortcut icon" href="/assets/images/film.svg">
+
 </head>
 <body class="bg-dark">
 <!--Insertion d'un menu-->
