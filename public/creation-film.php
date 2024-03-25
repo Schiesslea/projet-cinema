@@ -1,9 +1,7 @@
 <?php
 
-/**
- * @var PDO $pdo
- */
-require './config/db-config.php';
+require_once '../base.php';
+require_once BASE_PROJET . '/src/database/film-db.php';
 // Déterminer si le formulaire a été soumis
 // Utilisation d'une variable superglobale $_SERVER
 // $_SERVER : tableau associatif contenant des informations sur la requête HTTP
@@ -53,21 +51,9 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
 
     // Traiter les données
     if (empty($erreurs)) {
-        // Traitement des données (insertion dans une base de données)
-        $requete = $pdo->prepare(query: "INSERT INTO film (titre, duree, resume, date_sortie, pays, image) VALUES (?, ?, ?, ?, ?, ?)");
-
-        $requete->bindParam(1, $titre);
-        $requete->bindParam(2, $duree);
-        $requete->bindParam(3, $resume);
-        $requete->bindParam(4, $date_sortie);
-        $requete->bindParam(5, $pays);
-        $requete->bindParam(6, $image);
-
-        // 3. Exécution de la requête
-        $requete->execute();
-
+        postFilm($titre, $duree, $resume, $date_sortie, $pays, $image);
         // Rediriger l'utilisateur vers une autre page du site
-        header("Location: ../index.php");
+        header("Location: /index.php");
         exit();
     }
 }
@@ -81,21 +67,23 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
     <meta name="viewport"
           content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <link href="../assets/css/bootstrap.min.css" rel="stylesheet">
-    <link rel="stylesheet" href="/assets/css/style.css">
+    <link href="assets/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="/public/assets/css/style.css">
 
     <title>Ajouter un film</title>
-    <link rel="shortcut icon" href="/assets/images/film.svg">
+    <link rel="shortcut icon" href="/public/assets/images/film.svg">
 
 </head>
 <body class="bg-dark">
 <!--Insertion d'un menu-->
-<?php include_once './_partials/menu.php' ?>
+<?php require_once "../base.php";
+require_once BASE_PROJET . '/src/_partials/menu.php';
+?>
 <div class="container">
 <h1 class="mt-4" style="color: #86C232; border-bottom: solid; border-bottom-color: #86C232">Ajouter un film</h1>
 </div>
 <div class="container d-flex">
-    <img src="./assets/images/undraw_home_cinema_l7yl.svg" class="w-25" alt="">
+    <img src="assets/images/undraw_home_cinema_l7yl.svg" class="w-25" alt="">
 
     <div class="w-50 mx-auto shadow my-5  p-4" style="background-color: #86C232">
         <form action="" method="post" novalidate >
@@ -121,11 +109,11 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
                 <?php endif; ?>
             </div>
             <div class="mb-3">
-                <label for="resume" class="form-label">Resumé*</label>
-                <textarea name="resume" id="resume"  rows="3"
-                          placeholder="Écrire le résumé du film"
-                          class="form-control <?= (isset($erreurs['resume'])) ? "border border-2 border-danger" : "" ?>">
-                </textarea>
+                <label for="resume"  class="form-label">Resumé*</label>
+                <input type="text"
+                       class="form-control <?= (isset($erreurs['resume'])) ? "border border-2 border-danger" : "" ?>"
+                       id="resume" name="resume" value="<?= $resume ?>" placeholder="Saisir le résumé du film"
+                       aria-describedby="emailHelp">
                 <?php if (isset($erreurs['resume'])) : ?>
                     <p class="form-text text-danger"><?= $erreurs['resume'] ?></p>
                 <?php endif; ?>
@@ -169,6 +157,6 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
 </div>
 
 
-<script src="../assets/js/bootstrap.bundle.min.js"></script>
+<script src="assets/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>

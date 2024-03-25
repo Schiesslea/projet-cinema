@@ -5,15 +5,18 @@
     <meta name="viewport"
           content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <link href="../assets/css/bootstrap.min.css" rel="stylesheet">
+    <link href="../../public/assets/css/bootstrap.min.css" rel="stylesheet">
 
     <title>Document</title>
 </head>
 <body>
 <header>
+    <?php require_once "../base.php";
+    require_once BASE_PROJET . '/src/_partials/menu.php';
+    ?>
     <nav class="navbar navbar-expand-lg bg-dark shadow  navbar-expand-md"  >
         <div class="container-fluid  ">
-            <a class="navbar-brand text-white "  href="../index.php">
+            <a class="navbar-brand text-white "  href="<?php BASE_PROJET?>/index.php">
                 <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" fill="currentColor" class="bi bi-film"
                      viewBox="0 0 16 16">
                     <path d="M0 1a1 1 0 0 1 1-1h14a1 1 0 0 1 1 1v14a1 1 0 0 1-1 1H1a1 1 0 0 1-1-1zm4 0v6h8V1zm8 8H4v6h8zM1 1v2h2V1zm2 3H1v2h2zM1 7v2h2V7zm2 3H1v2h2zm-2 3v2h2v-2zM15 1h-2v2h2zm-2 3v2h2V4zm2 3h-2v2h2zm-2 3v2h2v-2zm2 3h-2v2h2z"/>
@@ -29,22 +32,22 @@
             <div class="collapse navbar-collapse  " id="navbarText">
                 <ul class="navbar-nav  mb-2 mb-lg-0 ms-auto">
                     <li class="nav-item">
-                        <a class="nav-link " href="/index.php" >
+                        <a class="nav-link " href="<?php BASE_PROJET?>/index.php" >
                             <button type="button" class="btn btn-light">Liste des films</button>
                         </a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="/formulaire.php">
+                        <a class="nav-link" href="<?php BASE_PROJET?>/creation-film.php">
                             <button type="button" class="btn btn-light">Ajouter un film</button>
                         </a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="/creation-compte.php">
+                        <a class="nav-link" href="<?php BASE_PROJET?>/creation-compte.php">
                             <button type="button" class="btn btn-light">Inscription</button>
                         </a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="/connexion.php">
+                        <a class="nav-link" href="<?php BASE_PROJET?>/connexion.php">
                             <button type="button" class="btn btn-light">Connexion</button>
                         </a>
                     </li>

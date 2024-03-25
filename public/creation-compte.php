@@ -1,9 +1,8 @@
 <?php
 
-/**
- * @var PDO $pdo
- */
-require './config/db-config.php';
+require_once '../base.php';
+require_once BASE_PROJET . '/src/database/user-db.php';
+
 
 // Déterminer si le formulaire a été soumis
 // Utilisation d'une variable superglobale $_SERVER
@@ -46,16 +45,14 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
         $erreurs['mdp_utilisateur'] = "Votre mot de passe doit contenir entre 8 et 14 caractères";
     }
     if (!preg_match('#^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*\W)#', $mdp_utilisateur)) {
-        $erreurs['mdp_utilisateur'] = "Votre mot de passe doit contenir un chiffre, une minuscule, une majuscule";
+        $erreurs['mdp_utilisateur'] = "Votre mot de passe doit contenir un chiffre, une minuscule, un caractère spécial et une majuscule";
     }
     else {
 
 
 
-    $requete_email = $pdo->prepare("SELECT * FROM utilisateur WHERE email_utilisateur=?");
-    $requete_email->execute([$email_utilisateur]);
-    $user = $requete_email->fetch();
-    if ($user) {
+    getUser($email_utilisateur);
+    if (getUser($email_utilisateur)) {
         $erreurs['email_utilisateur'] = "L'email est déjà associé à un compte";
     } else {
         // email n'existe pas
@@ -63,18 +60,10 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
 
     // Traiter les données
     if (empty($erreurs)) {
-        // Traitement des données (insertion dans une base de données)
-        $requete = $pdo->prepare(query: "INSERT INTO utilisateur (pseudo_utilisateur, email_utilisateur, mdp_utilisateur) VALUES (?, ?, ?)");
-
-        $requete->bindParam(1, $pseudo_utilisateur);
-        $requete->bindParam(2, $email_utilisateur);
-        $requete->bindParam(3, password_hash($mdp_utilisateur, PASSWORD_DEFAULT));
-
-        // 3. Exécution de la requête
-        $requete->execute();
+        postUser($pseudo_utilisateur, $email_utilisateur, $mdp_utilisateur);
 
         // Rediriger l'utilisateur vers une autre page du site
-        header("Location: ../index.php");
+        header("Location: /index.php");
         exit();
     }
 }
@@ -89,16 +78,18 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
     <meta name="viewport"
           content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <link href="../assets/css/bootstrap.min.css" rel="stylesheet">
+    <link href="assets/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
 
     <title>Création d'un compte</title>
-    <link rel="shortcut icon" href="/assets/images/film.svg">
+    <link rel="shortcut icon" href="/public/assets/images/film.svg">
 
 </head>
 <body class="bg-dark">
 <!--Insertion d'un menu-->
-<?php include_once './_partials/menu.php' ?>
+<?php require_once "../base.php";
+require_once BASE_PROJET . '/src/_partials/menu.php';
+?>
 <div class="container">
 <h1 class="mt-4 " style="color: #86C232; border-bottom: solid; border-bottom-color: #86C232">Création d'un compte</h1>
 </div>
@@ -150,7 +141,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
                                             Votre mot de passe doit contenir entre 8 et 14 caractères
                                         </li>
                                         <li>
-                                            Il doit contenir au moins une minuscule, une majuscule et un chiffre
+                                            Il doit contenir au moins une minuscule, une majuscule, un caractère spécial et un chiffre
                                         </li>
                                     </ul>
                                 </div>
@@ -189,6 +180,6 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
 </div>
 
 
-<script src="../assets/js/bootstrap.bundle.min.js"></script>
+<script src="assets/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>

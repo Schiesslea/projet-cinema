@@ -3,7 +3,7 @@
 /**
  * @var PDO $pdo
  */
-require './config/db-config.php';
+
 
 
 // Déterminer si le formulaire a été soumis
@@ -61,15 +61,17 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
     <meta name="viewport"
           content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <link href="../assets/css/bootstrap.min.css" rel="stylesheet">
+    <link href="assets/css/bootstrap.min.css" rel="stylesheet">
 
     <title>Connexion à un compte</title>
-    <link rel="shortcut icon" href="/assets/images/film.svg">
+    <link rel="shortcut icon" href="/public/assets/images/film.svg">
 
 </head>
 <body class="bg-dark">
 <!--Insertion d'un menu-->
-<?php include_once './_partials/menu.php' ?>
+<?php require_once "../base.php";
+require_once BASE_PROJET . '/src/_partials/menu.php';
+?>
 <div class="container">
 <h1 class="mt-4" style="border-bottom: solid; border-bottom-color: #86C232; color: #86C232">Connexion</h1>
 </div>
@@ -109,6 +111,6 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
 </div>
 
 
-<script src="../assets/js/bootstrap.bundle.min.js"></script>
+<script src="assets/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>

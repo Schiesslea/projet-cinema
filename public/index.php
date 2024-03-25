@@ -1,23 +1,9 @@
 <?php
 // Récupérer la liste des étudiants dans la table etudiant
 
-// 1. Connexion à la base de donnée db_intro
-/**
- * @var PDO $pdo
- */
-require './config/db-config.php';
-
-// 2. Préparation de la requête
-$requete = $pdo->prepare(query: "SELECT * FROM film");
-
-// 3. Exécution de la requête
-$requete->execute();
-
-// 4. Récupération des enregistrements
-// Un enregistrement = un tableau associatif
-$films = $requete->fetchAll(PDO::FETCH_ASSOC);
-
-
+require_once '../base.php';
+require_once BASE_PROJET . '/src/database/film-db.php';
+$films = getFilms();
 require 'fonction.php'
 ?>
 
@@ -28,14 +14,16 @@ require 'fonction.php'
     <meta name="viewport"
           content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <link href="../assets/css/bootstrap.min.css" rel="stylesheet">
+    <link href="assets/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
     <link rel="stylesheet" href="/assets/css/style.css">
 
     <title>BestMovie</title>
-    <link rel="shortcut icon" href="/assets/images/film.svg">
+    <link rel="shortcut icon" href="/public/assets/images/film.svg">
 </head>
-<?php include_once "./_partials/menu.php" ?>
+<?php require_once "../base.php";
+require_once BASE_PROJET . '/src/_partials/menu.php';
+?>
 <body class=" bg-dark" >
 <div class="d-flex mt-2">
     <div class=" rounded-4 p-3 flex-fill">
@@ -51,7 +39,7 @@ require 'fonction.php'
                             <p class="fs-5 text-dark"> <?= "<i class='bi bi-hourglass-split '></i>".convertirEnHeuresMinutes($film["duree"])  ?></p>
                             <p class="card-text">
                                 <a class="btn " style="background-color: #86C232 " role="button"
-                                   href="recup-param.php?id_film=<?= $film['id_film'] ?>
+                                   href="detail-film.php?id_film=<?= $film['id_film'] ?>
                         ">Détails du film</a></p>
 
                         </div>
@@ -59,7 +47,7 @@ require 'fonction.php'
                 <?php endforeach; ?>
             </div>
 
-            <script src="./assets/js/bootstrap.bundle.min.js"></script>
+            <script src="assets/js/bootstrap.bundle.min.js"></script>
 
 </body>
 </html>
