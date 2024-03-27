@@ -44,7 +44,7 @@
                         </li>
                     <li class="nav-item">
                         <a class="nav-link" href="<?php BASE_PROJET?>/deconnexion.php">
-                            <button type="button" class="btn btn-light">Deconnexion</button>
+                            <button type="button" class="btn btn-light">Déconnexion</button>
                         </a>
                     </li>
                     <?php endif; ?>
@@ -54,4 +54,3 @@
         </div>
     </nav>
 
-    <script src="./assets/js/bootstrap.bundle.min.js"></script>
