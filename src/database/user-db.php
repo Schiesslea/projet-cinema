@@ -24,4 +24,15 @@ function postUser($pseudo_utilisateur, $email_utilisateur, $mdp_utilisateur): vo
     // 3. Exécution de la requête
     $requete->execute();
 }
+
+function getMdp($email_utilisateur): array|bool
+{
+    $pdo=getConnexion();
+    $requete_mdp = $pdo->prepare( "SELECT mdp_utilisateur FROM utilisateur WHERE email_utilisateur=?");
+    $requete_mdp->execute([$email_utilisateur]);
+    $mdp = $requete_mdp->fetch(PDO::FETCH_ASSOC);
+    return $mdp;
+}
+
+
 ?>

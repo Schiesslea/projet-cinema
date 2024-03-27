@@ -8,7 +8,13 @@ if (isset($_GET['id_film'])) {
 
 $requete=getFilmParId($id_film);
 
-require 'fonction.php'
+require 'fonction.php';
+
+session_start();
+$utilisateur = null;
+if (isset($_SESSION["utilisateur"])) {
+    $utilisateur=$_SESSION["utilisateur"];
+}
 ?>
 
 <!doctype html>
@@ -30,11 +36,14 @@ require 'fonction.php'
 require_once BASE_PROJET . '/src/_partials/menu.php';
 ?>
 <div class="container ">
+    <?php if ($utilisateur) : ?>
+        <p class="text-white"><?= $utilisateur["pseudo_utilisateur"] ?> êtes connecté en tant que goat ♥ </p>
+    <?php endif; ?>
     <h1 class="  mt-4" style="color: #86C232; border-bottom: solid; border-bottom-color: #86C232*">Détail du film</h1>
     <div class="table  text-center">
         <div class="mt-3 md ">
             <?php
-            if ($film = $requete) { ?>
+            if ($film = $requete) : ?>
             <?php echo "<img src='{$film['image']}' alt='' class='card-img' height='400' </img>"; ?>
         </div>
         <div class="mt-3 text-black p-4 text-start  bg-white" >
@@ -51,7 +60,7 @@ require_once BASE_PROJET . '/src/_partials/menu.php';
             <?php
             echo "<p class='fst-italic'>{$film['resume']}</p>";
 
-            } elseif (getFilmParId($id_film) == null) { ?>
+             elseif (getFilmParId($id_film) == null) : ?>
         </div>
         <div class="circ">
             <div class="load ">Film introuvable...</div>
@@ -62,7 +71,7 @@ require_once BASE_PROJET . '/src/_partials/menu.php';
             </div>
         </div>
 
- <?php } ?>
+ <?php endif; ?>
 
     </div>
 </div>

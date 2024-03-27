@@ -58,6 +58,11 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
     }
 }
 
+session_start();
+$utilisateur = null;
+if (isset($_SESSION["utilisateur"])) {
+    $utilisateur=$_SESSION["utilisateur"];
+}
 ?>
 
 <!doctype html>
@@ -80,6 +85,9 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
 require_once BASE_PROJET . '/src/_partials/menu.php';
 ?>
 <div class="container">
+    <?php if ($utilisateur) : ?>
+        <p class="text-white"><?= $utilisateur["pseudo_utilisateur"] ?> êtes connecté en tant que goat ♥ </p>
+    <?php endif; ?>
 <h1 class="mt-4" style="color: #86C232; border-bottom: solid; border-bottom-color: #86C232">Ajouter un film</h1>
 </div>
 <div class="container d-flex">

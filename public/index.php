@@ -1,10 +1,15 @@
 <?php
-// Récupérer la liste des étudiants dans la table etudiant
-
 require_once '../base.php';
 require_once BASE_PROJET . '/src/database/film-db.php';
 $films = getFilms();
-require 'fonction.php'
+require 'fonction.php';
+
+session_start();
+$utilisateur = null;
+if (isset($_SESSION["utilisateur"])) {
+    $utilisateur=$_SESSION["utilisateur"];
+}
+
 ?>
 
 <!doctype html>
@@ -28,6 +33,9 @@ require_once BASE_PROJET . '/src/_partials/menu.php';
 <div class="d-flex mt-2">
     <div class=" rounded-4 p-3 flex-fill">
         <div class="container ">
+            <?php if ($utilisateur) : ?>
+                <p class="text-white"><?= $utilisateur["pseudo_utilisateur"] ?> êtes connecté en tant que goat ♥ </p>
+            <?php endif; ?>
             <h1 class="   border-3 mb-5 mt-4" style="color: #86C232; border-bottom: solid ;border-bottom-color: #86C232">Liste des films</h1>
             <!-- Votre code -->
             <div class="row text-center  " href="#home">

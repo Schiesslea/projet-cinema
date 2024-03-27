@@ -1,10 +1,7 @@
 <?php
 
-/**
- * @var PDO $pdo
- */
-
-
+require_once '../base.php';
+require_once BASE_PROJET . '/src/database/user-db.php';
 
 // Déterminer si le formulaire a été soumis
 // Utilisation d'une variable superglobale $_SERVER
@@ -25,33 +22,37 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
         $erreurs['email_utilisateur'] = "L'email est obligatoire";
     } elseif (!filter_var($email_utilisateur, FILTER_VALIDATE_EMAIL)) {
         $erreurs['email_utilisateur'] = "L'email n'est pas valide";
-    }
     if (empty($mdp_utilisateur)) {
         $erreurs['mdp_utilisateur'] = "Le mot de passe est obligatoire";
     }
+}
 
 
+    $email_user = getUser($email_utilisateur);
+    $mdp = getMdp($email_utilisateur);
+    if ($email_user) {
+        foreach ($email_user as $info_user) {
+            foreach ($mdp as $mdp_user) {
+                if (password_verify($mdp_utilisateur, $mdp_user)) {
+                    session_start();
+                    $_SESSION["utilisateur"] = [
+                        "pseudo_utilisateur"=>$info_user["pseudo_utilisateur"]
+                    ];
+                    header("Location: ../index.php");
+                    exit();
+                } else {
+                    $erreurs['email_utilisateur'] = "identifiants incorrects";
+                    $erreurs['mdp_utilisateur'] = "identifiants incorrects";
+                }
+            }
+        }
 
-
-
-
-        // Traiter les données
-        if (empty($erreurs)) {
-            // Traitement des données (insertion dans une base de données)
-            $requete = $pdo->prepare(query: "INSERT INTO utilisateur (pseudo_utilisateur, email_utilisateur, mdp_utilisateur) VALUES (?, ?, ?)");
-
-            $requete->bindParam(1, $pseudo_utilisateur);
-            $requete->bindParam(2, $email_utilisateur);
-            $requete->bindParam(3, password_hash($mdp_utilisateur, PASSWORD_DEFAULT));
-
-            // 3. Exécution de la requête
-            $requete->execute();
-
-            // Rediriger l'utilisateur vers une autre page du site
-            header("Location: ../index.php");
-            exit();
+        } else {
+            $erreurs['email_utilisateur'] = "identifiants incorrects";
+            $erreurs['mdp_utilisateur'] = "identifiants incorrects";
         }
 }
+
 ?>
 
 <!doctype html>

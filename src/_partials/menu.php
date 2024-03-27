@@ -1,17 +1,5 @@
-<!doctype html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport"
-          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <link href="../../public/assets/css/bootstrap.min.css" rel="stylesheet">
 
-    <title>Document</title>
-</head>
-<body>
-<header>
-    <?php require_once "../base.php";
+ <?php require_once "../base.php";
     require_once BASE_PROJET . '/src/_partials/menu.php';
     ?>
     <nav class="navbar navbar-expand-lg bg-dark shadow  navbar-expand-md"  >
@@ -36,29 +24,34 @@
                             <button type="button" class="btn btn-light">Liste des films</button>
                         </a>
                     </li>
+
+                    <?php if (empty($_SESSION)) : ?>
+                        <li class="nav-item">
+                            <a class="nav-link" href="<?php BASE_PROJET?>/creation-compte.php">
+                                <button type="button" class="btn btn-light">Inscription</button>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="<?php BASE_PROJET?>/connexion.php">
+                                <button type="button" class="btn btn-light">Connexion</button>
+                            </a>
+                        </li>
+                    <?php else : ?>
+                        <li class="nav-item">
+                            <a class="nav-link" href="<?php BASE_PROJET?>/creation-film.php">
+                                <button type="button" class="btn btn-light">Ajouter un film</button>
+                            </a>
+                        </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="<?php BASE_PROJET?>/creation-film.php">
-                            <button type="button" class="btn btn-light">Ajouter un film</button>
+                        <a class="nav-link" href="<?php BASE_PROJET?>/deconnexion.php">
+                            <button type="button" class="btn btn-light">Deconnexion</button>
                         </a>
                     </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="<?php BASE_PROJET?>/creation-compte.php">
-                            <button type="button" class="btn btn-light">Inscription</button>
-                        </a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="<?php BASE_PROJET?>/connexion.php">
-                            <button type="button" class="btn btn-light">Connexion</button>
-                        </a>
-                    </li>
+                    <?php endif; ?>
                 </ul>
 
             </div>
         </div>
     </nav>
-</header>
-<main>
-    <script src="./assets/js/bootstrap.bundle.min.js"></script>
 
-</body>
-</html>
+    <script src="./assets/js/bootstrap.bundle.min.js"></script>
