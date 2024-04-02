@@ -2,6 +2,10 @@
 
 require_once '../base.php';
 require_once BASE_PROJET . '/src/database/user-db.php';
+session_start();
+if (!empty($_SESSION)) {
+    header("Location: index.php");
+}
 
 // Déterminer si le formulaire a été soumis
 // Utilisation d'une variable superglobale $_SERVER

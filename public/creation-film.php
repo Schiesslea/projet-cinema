@@ -2,6 +2,11 @@
 
 require_once '../base.php';
 require_once BASE_PROJET . '/src/database/film-db.php';
+
+session_start();
+if (empty($_SESSION)) {
+    header("Location: index.php");
+}
 // Déterminer si le formulaire a été soumis
 // Utilisation d'une variable superglobale $_SERVER
 // $_SERVER : tableau associatif contenant des informations sur la requête HTTP
@@ -58,7 +63,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
     }
 }
 
-session_start();
+
 $utilisateur = null;
 if (isset($_SESSION["utilisateur"])) {
     $utilisateur=$_SESSION["utilisateur"];
