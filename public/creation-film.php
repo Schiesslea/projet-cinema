@@ -7,6 +7,11 @@ session_start();
 if (empty($_SESSION)) {
     header("Location: index.php");
 }
+$utilisateur = null;
+if (isset($_SESSION["utilisateur"])) {
+    $utilisateur=$_SESSION["utilisateur"];
+}
+
 // Déterminer si le formulaire a été soumis
 // Utilisation d'une variable superglobale $_SERVER
 // $_SERVER : tableau associatif contenant des informations sur la requête HTTP
@@ -56,7 +61,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
 
     // Traiter les données
     if (empty($erreurs)) {
-        postFilm($titre, $duree, $resume, $date_sortie, $pays, $image);
+        postFilm($titre, $duree, $resume, $date_sortie, $pays, $image, $utilisateur["id_utilisateur"]);
         // Rediriger l'utilisateur vers une autre page du site
         header("Location: /index.php");
         exit();
@@ -64,10 +69,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
 }
 
 
-$utilisateur = null;
-if (isset($_SESSION["utilisateur"])) {
-    $utilisateur=$_SESSION["utilisateur"];
-}
+
 ?>
 
 <!doctype html>
@@ -91,7 +93,7 @@ require_once BASE_PROJET . '/src/_partials/menu.php';
 ?>
 <div class="container">
     <?php if ($utilisateur) : ?>
-        <p class="text-white">Heureux de vous revoir <?= $utilisateur["pseudo_utilisateur"] ?> ♥ </p>
+        <p class="text-white mt-3" >Heureux de vous revoir <?= $utilisateur["pseudo_utilisateur"] ?> ♥ </p>
     <?php endif; ?>
 <h1 class="mt-4" style="color: #86C232; border-bottom: solid; border-bottom-color: #86C232">Ajouter un film</h1>
 </div>

@@ -33,12 +33,12 @@ function getFilmParId(?int $id_film) : array|bool
     return $requete->fetch(PDO::FETCH_ASSOC);
 }
 
-function postFilm($titre, $duree, $resume, $date_sortie, $pays, $image) : void
+function postFilm($titre, $duree, $resume, $date_sortie, $pays, $image, $id_utilisateur) : void
 {
     $pdo=getConnexion();
     // Traiter les données
     // Traitement des données (insertion dans une base de données)
-    $requete = $pdo->prepare(query: "INSERT INTO film (titre, duree, resume, date_sortie, pays, image) VALUES (?, ?, ?, ?, ?, ?)");
+    $requete = $pdo->prepare(query: "INSERT INTO film (titre, duree, resume, date_sortie, pays, image, id_utilisateur) VALUES (?, ?, ?, ?, ?, ?, ?)");
 
     $requete->bindParam(1, $titre);
     $requete->bindParam(2, $duree);
@@ -46,6 +46,7 @@ function postFilm($titre, $duree, $resume, $date_sortie, $pays, $image) : void
     $requete->bindParam(4, $date_sortie);
     $requete->bindParam(5, $pays);
     $requete->bindParam(6, $image);
+    $requete->bindParam(7, $id_utilisateur);
 
     // 3. Exécution de la requête
     $requete->execute();
