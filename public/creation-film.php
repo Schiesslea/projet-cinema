@@ -91,7 +91,7 @@ require_once BASE_PROJET . '/src/_partials/menu.php';
 ?>
 <div class="container">
     <?php if ($utilisateur) : ?>
-        <p class="text-white"><?= $utilisateur["pseudo_utilisateur"] ?> êtes connecté en tant que goat ♥ </p>
+        <p class="text-white">Heureux de vous revoir <?= $utilisateur["pseudo_utilisateur"] ?> ♥ </p>
     <?php endif; ?>
 <h1 class="mt-4" style="color: #86C232; border-bottom: solid; border-bottom-color: #86C232">Ajouter un film</h1>
 </div>

@@ -34,5 +34,12 @@ function getMdp($email_utilisateur): array|bool
     return $mdp;
 }
 
-
+function getPseudoUtilisateur($id_utilisateur): array
+{
+    $pdo=getConnexion();
+    $requete_pseudo = $pdo->prepare( "SELECT pseudo_utilisateur FROM utilisateur WHERE id_utilisateur=?");
+    $requete_pseudo->execute([$id_utilisateur]);
+    $pseudo_utilisateur = $requete_pseudo->fetch(PDO::FETCH_ASSOC);
+    return $pseudo_utilisateur;
+}
 ?>

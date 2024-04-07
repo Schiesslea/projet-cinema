@@ -1,6 +1,9 @@
 <?php
 require_once '../base.php';
 require_once BASE_PROJET . '/src/database/film-db.php';
+require_once BASE_PROJET . '/src/database/user-db.php';
+require 'fonction.php';
+
 $id_film=null;
 if (isset($_GET['id_film'])) {
     $id_film = filter_var($_GET['id_film'], FILTER_VALIDATE_INT);
@@ -8,7 +11,6 @@ if (isset($_GET['id_film'])) {
 
 $requete=getFilmParId($id_film);
 
-require 'fonction.php';
 
 session_start();
 $utilisateur = null;
@@ -37,7 +39,7 @@ require_once BASE_PROJET . '/src/_partials/menu.php';
 ?>
 <div class="container ">
     <?php if ($utilisateur) : ?>
-        <p class="text-white"><?= $utilisateur["pseudo_utilisateur"] ?> êtes connecté en tant que goat ♥ </p>
+        <p class="text-white">Heureux de vous revoir <?= $utilisateur["pseudo_utilisateur"] ?> ♥ </p>
     <?php endif; ?>
     <h1 class="  mt-4" style="color: #86C232; border-bottom: solid; border-bottom-color: #86C232*">Détail du film</h1>
     <div class="table  text-center">
@@ -58,8 +60,9 @@ require_once BASE_PROJET . '/src/_partials/menu.php';
             </div>
             <h3>Synopsis du film :</h3>
             <?php
-            echo "<p class='fst-italic'>{$film['resume']}</p>";
-
+            echo "<p class='fst-italic'>{$film['resume']}</p>"; ?>
+             <p class='fw-bold'>Film crée par : </p><?php $utilisateur=getPseudoUtilisateur($film['id_utilisateur']);
+                echo $utilisateur["pseudo_utilisateur"];
              elseif (getFilmParId($id_film) == null) : ?>
         </div>
         <div class="circ">

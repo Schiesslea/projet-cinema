@@ -30,17 +30,15 @@ if (isset($_SESSION["utilisateur"])) {
 require_once BASE_PROJET . '/src/_partials/menu.php';
 ?>
 <body class=" bg-dark" >
-<div class="d-flex mt-2">
-    <div class=" rounded-4 p-3 flex-fill">
         <div class="container ">
             <?php if ($utilisateur) : ?>
-                <p class="text-white"><?= $utilisateur["pseudo_utilisateur"] ?> êtes connecté en tant que goat ♥ </p>
+                <p class="text-white">Heureux de vous revoir <?= $utilisateur["pseudo_utilisateur"] ?> ♥ </p>
             <?php endif; ?>
             <h1 class="   border-3 mb-5 mt-4" style="color: #86C232; border-bottom: solid ;border-bottom-color: #86C232">Liste des films</h1>
             <!-- Votre code -->
-            <div class="row text-center  " href="#home">
+            <div class="row text-center " href="#home">
                 <?php foreach ($films as $film) : ?>
-                    <div class="card  rounded-4  mb-4 me-2" style="max-width: 20rem ">
+                    <div class="card rounded-4  mb-4 me-2" style="max-width: 20rem ">
                         <div class="card-body ">
                             <h4 class="card-title"><img src="<?= $film["image"] ?>" alt=""</h4>
                             <p class="card-text fs-4 text-dark" ><?= $film["titre"] ?></p>
