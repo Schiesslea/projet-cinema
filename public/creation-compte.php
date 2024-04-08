@@ -63,7 +63,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
         postUser($pseudo_utilisateur, $email_utilisateur, $mdp_utilisateur);
 
         // Rediriger l'utilisateur vers une autre page du site
-        header("Location: /index.php");
+        header("Location: /connexion.php");
         exit();
     }
 }
@@ -112,7 +112,7 @@ require_once BASE_PROJET . '/src/_partials/menu.php';
                 <input type="email"
                        class="form-control <?= (isset($erreurs['email_utilisateur'])) ? "border border-2 border-danger" : "" ?>"
                        id="email_utilisateur"
-                       name="email_utilisateur" value="<?= ($erreurs) ? "" : $email_utilisateur ?>" placeholder="Saisir votre email"
+                       name="email_utilisateur" value="<?=  $email_utilisateur ?>" placeholder="Saisir votre email"
                        aria-describedby="emailHelp">
                 <?php if (isset($erreurs['email_utilisateur'])) : ?>
                     <p class="form-text text-danger"><?= $erreurs['email_utilisateur'] ?></p>
