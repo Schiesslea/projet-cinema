@@ -108,9 +108,8 @@ require_once BASE_PROJET . '/src/_partials/menu.php';
                 <textarea
                        class="form-control <?= (isset($erreurs['avis'])) ? "border border-2 border-danger" : "" ?>"
                        id="avis"
-                       name="avis" value="<?= $avis ?>" placeholder="Saisir votre avis sur le film"
-                       aria-describedby="emailHelp">
-                </textarea>
+                       name="avis"  placeholder="Saisir votre avis sur le film"
+                       aria-describedby="emailHelp"></textarea>
                 <?php if (isset($erreurs['avis'])) : ?>
                     <p class="form-text text-danger"><?= $erreurs['avis'] ?></p>
                 <?php endif; ?>
@@ -120,7 +119,7 @@ require_once BASE_PROJET . '/src/_partials/menu.php';
                 <input type="number"
                        class="form-control <?= (isset($erreurs['note'])) ? "border border-2 border-danger" : "" ?>"
                        id="note"
-                       name="note" min="0" max="5" value="<?= $note ?>" placeholder="Saisir votre note"
+                       name="note" min="0" max="5" value="<?= $note ?>" placeholder="Saisir votre note entre 0 et 5"
                        aria-describedby="emailHelp">
                 <?php if (isset($erreurs['note'])) : ?>
                     <p class="form-text text-danger"><?= $erreurs['note'] ?></p>

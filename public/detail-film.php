@@ -87,11 +87,14 @@ require_once BASE_PROJET . '/src/_partials/menu.php';
     <div class="col-9 ">
         <h1 class="  text-start mt-2 ">Commentaire</h1>
     </div>
+    <?php
+    if (!empty($_SESSION)) : ?>
     <div class="col-3 float-sm-end" >
         <a class="btn btn-light"  href="ajout-commentaire.php?id_film=<?= $film['id_film'] ?>">
            Ajouter un commentaire </a>
     </div>
 </div>
+<?php endif ?>
 
 <script src="assets/js/bootstrap.bundle.min.js"></script>
 
