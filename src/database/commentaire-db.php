@@ -23,17 +23,26 @@ $requete->execute();
 
 }
 
-function getCommentaire(): array
+function getCommentaire($id_film): array
 {
     $pdo=getConnexion();
     // 2. Préparation de la requête
-    $requete = $pdo->prepare( "SELECT * FROM commentaire");
+    $requete = $pdo->prepare( "SELECT * FROM commentaire WHERE id_film=$id_film ORDER BY date_commentaire DESC, heure_commentaire DESC");
 
 // 3. Exécution de la requête
     $requete->execute();
 
 // 4. Récupération des enregistrements
 // Un enregistrement = un tableau associatif
+    return $requete->fetchAll(PDO::FETCH_ASSOC);
+
+}
+
+function getMoyenneNoteEtCommentaire($id_film) : array
+{
+    $pdo=getConnexion();
+    $requete = $pdo->prepare( "SELECT ROUND(AVG(note_commentaire), 1) AS 'moyenne_note', COUNT(note_commentaire) AS 'nombre_commentaire' FROM commentaire WHERE id_film=$id_film");
+    $requete->execute();
     return $requete->fetchAll(PDO::FETCH_ASSOC);
 
 }

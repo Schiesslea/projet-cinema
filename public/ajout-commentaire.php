@@ -47,9 +47,6 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
     if (empty($avis)) {
         $erreurs['avis_commentaire'] = "L'avis est obligatoire";
     }
-    if (empty($note)) {
-        $erreurs['note_commentaire'] = "La note est obligatoire";
-    }
     if ($note < 0 || $note > 5) {
         $erreurs['note_commentaire'] = "La note doit être comprise entre 0 et 5";
     }

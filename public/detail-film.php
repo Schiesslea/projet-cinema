@@ -2,6 +2,7 @@
 require_once '../base.php';
 require_once BASE_PROJET . '/src/database/film-db.php';
 require_once BASE_PROJET . '/src/database/user-db.php';
+require_once BASE_PROJET . '/src/database/commentaire-db.php';
 require 'fonction.php';
 
 $id_film=null;
@@ -11,13 +12,16 @@ if (isset($_GET['id_film'])) {
 
 $requete=getFilmParId($id_film);
 
-$commentaires = getCommentaire();
+$commentaires = getCommentaire($id_film);
 
 session_start();
 $utilisateur = null;
 if (isset($_SESSION["utilisateur"])) {
     $utilisateur=$_SESSION["utilisateur"];
 }
+
+$moyenne_nb_commentaires = getMoyenneNoteEtCommentaire($id_film);
+
 ?>
 
 <!doctype html>
@@ -53,6 +57,19 @@ require_once BASE_PROJET . '/src/_partials/menu.php';
 
             <?php
             echo "<p class='fs-4 fw-bold'> {$film['titre']}</p>"; ?>
+            <div class="row">
+            <?php foreach ($moyenne_nb_commentaires as $moyenne_nb_commentaire) : ?>
+
+            <p><?php echo $moyenne_nb_commentaire["moyenne_note"] ?> <?php echo genererEtoiles($moyenne_nb_commentaire["moyenne_note"]) ?>
+            <?php if ($moyenne_nb_commentaire["nombre_commentaire"] == null) {
+                echo "Aucun commentaire pour ce film...";
+            }elseif ($moyenne_nb_commentaire["nombre_commentaire"] == 1) {
+                echo $moyenne_nb_commentaire["nombre_commentaire"] ."commentaire";
+            }elseif ($moyenne_nb_commentaire["nombre_commentaire"] >1) {
+                    echo $moyenne_nb_commentaire["nombre_commentaire"] ."commentaires";
+                }?></p>
+            <?php endforeach; ?>
+            </div>
         <div class="row">
             <?php
             echo "<p class='col-4 fw-bold' ><i class='bi bi-hourglass-split'></i>".convertirEnHeuresMinutes($film['duree'])."</p>";
@@ -83,21 +100,34 @@ require_once BASE_PROJET . '/src/_partials/menu.php';
 
 
 </div>
-
-<div class="row align-middle" style="color: #86C232; border-bottom: solid; border-bottom-color: #86C232">
+<div class="mt-3 text-black p-4 bg-white" >
+<div class="row align-middle" style=" border-bottom: solid; border-bottom-color: #86C232">
     <div class="col-9 ">
-        <h1 class="  text-start mt-2 ">Commentaire</h1>
+        <h1 class="  text-start ">Commentaire</h1>
     </div>
     <?php
     if (!empty($_SESSION)) : ?>
-    <div class="col-3 float-sm-end" >
-        <a class="btn btn-light mt-3"  href="ajout-commentaire.php?id_film=<?= $film['id_film'] ?>">
+    <div class="col-3" >
+        <a class="btn btn-light float-end" style="background-color: #86C232;" href="ajout-commentaire.php?id_film=<?= $film['id_film'] ?>">
            Ajouter un commentaire </a>
     </div>
 </div>
 <?php endif ?>
 
 
+    <?php foreach ($commentaires as $commentaire) : ?>
+
+    <div class="row ">
+    <?php  $pseudo_commentaire=getPseudoUtilisateur($commentaire['id_utilisateur']); ?>
+        <p class="text-start fw-bold fst-italic col-9 mt-1" style="color: #86C232;" > <?php echo $pseudo_commentaire['pseudo_utilisateur'];?></p>
+        <p class="text-end col-3 mt-1">écrit le <strong><?php echo  strftime('%d-%m-%Y',strtotime($commentaire['date_commentaire']));?></strong> à <strong><?php echo $commentaire['heure_commentaire']; ?></strong></p>
+    </div>
+        <p class="fw-bold fs-3 "> <?php echo $commentaire['titre_commentaire'];?>         <button class="float-end btn-dark btn" style="color: #86C232" ><?php echo $commentaire['note_commentaire'] ?><i class="ms-1 bi bi-star-fill" ></i> </button>
+        </p>
+        <p class="pb-3" style="border-bottom: solid; border-bottom-color: #86C232;"> <?php echo $commentaire['avis_commentaire'];?></p>
+
+
+    <?php endforeach; ?>
 
 <script src="assets/js/bootstrap.bundle.min.js"></script>
 
