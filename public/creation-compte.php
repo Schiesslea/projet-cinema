@@ -53,7 +53,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
 
     getUser($email_utilisateur);
     if (getUser($email_utilisateur)) {
-        $erreurs['email_utilisateur'] = "L'email est déjà associé à un compte";
+        $erreurs['email_utilisateur'] = "L'email est déjà associée à un compte";
     } else {
         // email n'existe pas
 

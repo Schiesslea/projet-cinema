@@ -11,6 +11,7 @@ if (isset($_GET['id_film'])) {
 
 $requete=getFilmParId($id_film);
 
+$commentaires = getCommentaire();
 
 session_start();
 $utilisateur = null;
@@ -90,11 +91,13 @@ require_once BASE_PROJET . '/src/_partials/menu.php';
     <?php
     if (!empty($_SESSION)) : ?>
     <div class="col-3 float-sm-end" >
-        <a class="btn btn-light"  href="ajout-commentaire.php?id_film=<?= $film['id_film'] ?>">
+        <a class="btn btn-light mt-3"  href="ajout-commentaire.php?id_film=<?= $film['id_film'] ?>">
            Ajouter un commentaire </a>
     </div>
 </div>
 <?php endif ?>
+
+
 
 <script src="assets/js/bootstrap.bundle.min.js"></script>
 

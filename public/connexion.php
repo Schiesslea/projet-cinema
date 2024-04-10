@@ -46,14 +46,14 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
                     header("Location: ../index.php");
                     exit();
                 } else {
-                    $erreurs['email_utilisateur'] = "identifiants incorrects";
+                    $erreurs['email_utilisateur'] = "";
                     $erreurs['mdp_utilisateur'] = "identifiants incorrects";
                 }
             }
         }
 
         } else {
-            $erreurs['email_utilisateur'] = "identifiants incorrects";
+            $erreurs['email_utilisateur'] = "";
             $erreurs['mdp_utilisateur'] = "identifiants incorrects";
         }
 }
