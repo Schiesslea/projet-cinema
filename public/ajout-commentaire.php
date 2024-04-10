@@ -18,7 +18,7 @@ $id_film=null;
 if (isset($_GET['id_film'])) {
     $id_film = filter_var($_GET['id_film'], FILTER_VALIDATE_INT);
 }
-
+$commentaires = getCommentaire($id_film);
 $requete=getFilmParId($id_film);
 // Déterminer si le formulaire a été soumis
 // Utilisation d'une variable superglobale $_SERVER
@@ -50,12 +50,17 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
     if ($note < 0 || $note > 5) {
         $erreurs['note_commentaire'] = "La note doit être comprise entre 0 et 5";
     }
+    foreach ($commentaires as $commentaire) {
+        if ($utilisateur["id_utilisateur"] == $commentaire["id_utilisateur"]) {
+            $erreurs['note_commentaire'] = "Vous avez déjà posté un commentaire";
+        }
+    }
 
     // Traiter les données
     if (empty($erreurs)) {
         postCommentaire($titre, $avis, $note, date("Y/m/d"), date("H:i:s"), $utilisateur["id_utilisateur"], $id_film);
         // Rediriger l'utilisateur vers une autre page du site
-        header("Location: /index.php");
+        header("Location: detail-film.php?id_film=$id_film");
         exit();
     }
 }

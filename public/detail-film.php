@@ -64,9 +64,9 @@ require_once BASE_PROJET . '/src/_partials/menu.php';
             <?php if ($moyenne_nb_commentaire["nombre_commentaire"] == null) {
                 echo "Aucun commentaire pour ce film...";
             }elseif ($moyenne_nb_commentaire["nombre_commentaire"] == 1) {
-                echo $moyenne_nb_commentaire["nombre_commentaire"] ."commentaire";
+                echo $moyenne_nb_commentaire["nombre_commentaire"] ." commentaire";
             }elseif ($moyenne_nb_commentaire["nombre_commentaire"] >1) {
-                    echo $moyenne_nb_commentaire["nombre_commentaire"] ."commentaires";
+                    echo $moyenne_nb_commentaire["nombre_commentaire"] ." commentaires";
                 }?></p>
             <?php endforeach; ?>
             </div>
