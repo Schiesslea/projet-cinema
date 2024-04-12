@@ -42,11 +42,21 @@
                                 <button type="button" class="btn btn-light">Ajouter un film</button>
                             </a>
                         </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="<?php BASE_PROJET?>/deconnexion.php">
-                            <button type="button" class="btn btn-light">Déconnexion</button>
-                        </a>
-                    </li>
+                        <div class="btn-group dropdown" role="group">
+                            <button type="button" class="btn btn-sm btn-light  dropdown-toggle"
+                                    data-bs-toggle="dropdown"
+                                    aria-expanded="false">
+                                <i class="bi bi-person-circle me-1 "></i><?= $utilisateur["pseudo_utilisateur"] ?>
+                            </button>
+                            <ul class="dropdown-menu dropdown-menu-center">
+                                <li><a class="dropdown-item" href="<?php BASE_PROJET ?>/deconnexion.php"><i
+                                                class="bi bi-box-arrow-right me-1"></i>Déconnexion</a>
+                                </li>
+                                <li><a class="dropdown-item" href="<?php BASE_PROJET ?>/liste_film_utilisateur.php"><i class="bi bi-arrow-return-right"></i>Ma liste de film</a>
+                                </li>
+
+                            </ul>
+                        </div>
                     <?php endif; ?>
                 </ul>
 
