@@ -52,7 +52,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
     }
     foreach ($commentaires as $commentaire) {
         if ($utilisateur["id_utilisateur"] == $commentaire["id_utilisateur"]) {
-            $erreurs['note_commentaire'] = "Vous avez déjà posté un commentaire";
+            $erreurs['commentaire_existe'] = "Vous avez déjà posté un commentaire";
         }
     }
 
@@ -106,9 +106,9 @@ require_once BASE_PROJET . '/src/_partials/menu.php';
     <h1 class="mt-4" style="color: #86C232; border-bottom: solid; border-bottom-color: #86C232">Votre évaluation pour <?= $requete["titre"] ?></h1>
 </div>
 <div class="container d-flex">
-    <img src="assets/images/undraw_home_cinema_l7yl.svg" class="w-25" alt="">
 
     <div class="w-50 mx-auto shadow my-5  p-4" style="background-color: #86C232">
+        <p class="text-danger text-center">Attention, vous pouvez poster que un commentaire par film</p>
         <form action="" method="post" novalidate >
             <div class="mb-3">
                 <label for="titre_commentaire" class="form-label">Titre*</label>
@@ -142,10 +142,15 @@ require_once BASE_PROJET . '/src/_partials/menu.php';
                     <p class="form-text text-danger"><?= $erreurs['note_commentaire'] ?></p>
                 <?php endif; ?>
             </div>
+            <?php if (isset($erreurs['commentaire_existe'])) : ?>
+            <p> <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none"><style>@keyframes n-info-tri{0%,to{transform:rotate(0deg);transform-origin:center}10%,90%{transform:rotate(2deg)}20%,40%,60%{transform:rotate(-6deg)}30%,50%,70%{transform:rotate(6deg)}80%{transform:rotate(-2deg)}}.prefix__n-info-tri{animation:n-info-tri .8s cubic-bezier(.455,.03,.515,.955) both infinite}</style><path class="prefix__n-info-tri" style="animation-delay:1s" stroke="#0A0A30" stroke-width="1.5" d="M11.134 6.844a1 1 0 011.732 0l5.954 10.312a1 1 0 01-.866 1.5H6.046a1 1 0 01-.866-1.5l5.954-10.312z"/><g class="prefix__n-info-tri"><path stroke="#265BFF" stroke-linecap="round" stroke-width="1.5" d="M12 10.284v3.206"/><circle cx="12" cy="15.605" r=".832" fill="#265BFF"/></g></svg><?= $erreurs['commentaire_existe'] ?></p>
+            <?php endif; ?>
             <p>* Champs obligatoires</p>
             <button type="submit" class="btn btn-light">Valider</button>
         </form>
     </div>
+    <img src="assets/images/undraw_reviews_lp8w.svg" class="w-25" alt="">
+
 </div>
 
 

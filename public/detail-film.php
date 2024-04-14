@@ -100,15 +100,15 @@ require_once BASE_PROJET . '/src/_partials/menu.php';
 
 
 </div>
-<div class="mt-3 text-black p-4 bg-white" >
-<div class="row align-middle" style=" border-bottom: solid; border-bottom-color: #86C232">
-    <div class="col-9 ">
-        <h1 class="  text-start ">Commentaire</h1>
+<div class="mt-3 text-black p-4 bg-white"  >
+<div class="row align-middle" >
+    <div class="col-9 " style=" border-bottom: solid; border-bottom-color: #86C232" >
+        <h1 class="  text-start " >Commentaire</h1>
     </div>
     <?php
     if (!empty($_SESSION)) : ?>
-    <div class="col-3" >
-        <a class="btn btn-light float-end" style="background-color: #86C232;" href="ajout-commentaire.php?id_film=<?= $film['id_film'] ?>">
+    <div class="col-3" style=" border-bottom: solid; border-bottom-color: #86C232" >
+        <a class="btn btn-light float-end mt-2" style="background-color: #86C232;" href="ajout-commentaire.php?id_film=<?= $film['id_film'] ?>">
            Ajouter un commentaire </a>
     </div>
 </div>
